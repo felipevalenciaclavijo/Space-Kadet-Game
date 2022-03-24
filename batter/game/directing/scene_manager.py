@@ -8,6 +8,7 @@ from game.casting.image import Image
 from game.casting.label import Label
 from game.casting.point import Point
 from game.casting.racket import Racket
+from game.casting.ship import Ship
 from game.casting.stats import Stats
 from game.casting.text import Text 
 from game.scripting.change_scene_action import ChangeSceneAction
@@ -35,6 +36,9 @@ from game.services.raylib.raylib_audio_service import RaylibAudioService
 from game.services.raylib.raylib_keyboard_service import RaylibKeyboardService
 from game.services.raylib.raylib_physics_service import RaylibPhysicsService
 from game.services.raylib.raylib_video_service import RaylibVideoService
+
+from game.scripting.draw_ship_action import DrawShipAction
+from game.scripting.move_ship_action import MoveShipAction
 
 
 class SceneManager:
@@ -64,6 +68,9 @@ class SceneManager:
     START_DRAWING_ACTION = StartDrawingAction(VIDEO_SERVICE)
     UNLOAD_ASSETS_ACTION = UnloadAssetsAction(AUDIO_SERVICE, VIDEO_SERVICE)
 
+    DRAW_SHIP_ACTION= DrawShipAction(VIDEO_SERVICE)
+    MOVE_SHIP_ACTION = MoveShipAction()
+
     def __init__(self):
         pass
 
@@ -90,7 +97,8 @@ class SceneManager:
         self._add_score(cast)
         self._add_ball(cast)
         self._add_bricks(cast)
-        self._add_racket(cast)
+        # self._add_racket(cast)
+        self._add_ship(cast)
         self._add_dialog(cast, ENTER_TO_START)
 
         self._add_initialize_script(script)
@@ -104,7 +112,8 @@ class SceneManager:
     def _prepare_next_level(self, cast, script):
         self._add_ball(cast)
         self._add_bricks(cast)
-        self._add_racket(cast)
+        # self._add_racket(cast)
+        self._add_ship(cast)
         self._add_dialog(cast, PREP_TO_LAUNCH)
 
         script.clear_actions(INPUT)
@@ -114,7 +123,8 @@ class SceneManager:
         
     def _prepare_try_again(self, cast, script):
         self._add_ball(cast)
-        self._add_racket(cast)
+        # self._add_racket(cast)
+        self._add_ship(cast)
         self._add_dialog(cast, PREP_TO_LAUNCH)
 
         script.clear_actions(INPUT)
@@ -133,7 +143,8 @@ class SceneManager:
 
     def _prepare_game_over(self, cast, script):
         self._add_ball(cast)
-        self._add_racket(cast)
+        # self._add_racket(cast)
+        self._add_ship(cast)
         self._add_dialog(cast, WAS_GOOD_GAME)
 
         script.clear_actions(INPUT)
@@ -227,18 +238,30 @@ class SceneManager:
         stats = Stats()
         cast.add_actor(STATS_GROUP, stats)
 
-    def _add_racket(self, cast):
-        cast.clear_actors(RACKET_GROUP)
-        x = CENTER_X - RACKET_WIDTH / 2
-        y = SCREEN_HEIGHT - RACKET_HEIGHT
+    # def _add_racket(self, cast):
+    #     cast.clear_actors(RACKET_GROUP)
+    #     x = CENTER_X - RACKET_WIDTH / 2
+    #     y = SCREEN_HEIGHT - RACKET_HEIGHT
+    #     position = Point(x, y)
+    #     size = Point(RACKET_WIDTH, RACKET_HEIGHT)
+    #     velocity = Point(0, 0)
+    #     body = Body(position, size, velocity)
+    #     animation = Animation(RACKET_IMAGES, RACKET_RATE)
+    #     racket = Racket(body, animation)
+    #     cast.add_actor(RACKET_GROUP, racket)
+
+    
+    def _add_ship(self, cast):
+        cast.clear_actors(SHIP_GROUP)
+        x = CENTER_X - SHIP_WIDTH / 2
+        y = SCREEN_HEIGHT - SHIP_HEIGHT
         position = Point(x, y)
-        size = Point(RACKET_WIDTH, RACKET_HEIGHT)
+        size = Point(SHIP_WIDTH, SHIP_HEIGHT)
         velocity = Point(0, 0)
         body = Body(position, size, velocity)
-        animation = Animation(RACKET_IMAGES, RACKET_RATE)
-        racket = Racket(body, animation)
-        cast.add_actor(RACKET_GROUP, racket)
-
+        animation = Animation(SHIP_IMAGES, SHIP_RATE)
+        ship = Ship(body, animation)
+        cast.add_actor(RACKET_GROUP, ship)
     # ----------------------------------------------------------------------------------------------
     # scripting methods
     # ----------------------------------------------------------------------------------------------
