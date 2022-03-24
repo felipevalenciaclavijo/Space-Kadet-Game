@@ -98,11 +98,20 @@ BALL_VELOCITY = 6
 
 # RACKET
 RACKET_GROUP = "rackets"
-RACKET_IMAGES = [f"batter/assets/images\\{n:03}.png" for n in range(100, 103)]
+RACKET_IMAGES = ["batter/assets/images\\ship.png"]
+#RACKET_IMAGES = [f"batter/assets/images\\{n:03}.png" for n in range(100, 103)]
 RACKET_WIDTH = 106
 RACKET_HEIGHT = 28
 RACKET_RATE = 6
 RACKET_VELOCITY = 7
+
+# SHIP
+SHIP_GROUP = "ships"
+SHIP_IMAGE = ["space_shooter/assets/images/ship.png"]
+SHIP_WIDTH = 28
+SHIP_HEIGHT = 39
+SHIP_RATE = 6
+SHIP_VELOCITY = 7
 
 # BRICK
 BRICK_GROUP = "bricks"
