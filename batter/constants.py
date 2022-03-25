@@ -98,13 +98,33 @@ BALL_WIDTH = 28
 BALL_HEIGHT = 28
 BALL_VELOCITY = 6
 
-# ASTEROID
+# # FANCIER ASTEROID GROUP WITH MULTIPLE ATTRIBUTES - NEEDS WORK
+# ASTEROID_GROUP = "asteroids"
+# ASTEROID_IMAGES = {
+#     "gray": [["batter/assets/images\\asteroid1.png"], 44, 44],
+#     "green": [["batter/assets/images\\asteroid3.png"], 43, 44],
+#     "brown": [["batter/assets/images\\asteroid2.png"], 39, 44]
+# }
+# ASTEROID_WIDTH = ASTEROID_IMAGES[key][1]
+# ASTEROID_HEIGHT = ASTEROID_IMAGES[key][2]
+# ASTEROID_VELOCITY = 6
+
+
+# ASTEROIDS
 ASTEROID_GROUP = "asteroids"
-ASTEROID_IMAGES = {
-    "gray": ["batter/assets/images\\asteroid1.png"],
-    "green": ["batter/assets/images\\asteroid3.png"],
-    "brown": ["batter/assets/images\\asteroid2.png"],
-}
+ASTEROID_VELOCITY = 6
+GRAY_ASTEROID_IMAGE = "batter/assets/images\\asteroid1.png"
+GRAY_ASTEROID_WIDTH = 44
+GRAY_ASTEROID_HEIGHT = 44
+BROWN_ASTEROID_IMAGE = "batter/assets/images\\asteroid1.png"
+BROWN_ASTEROID_WIDTH = 39
+BROWN_ASTEROID_HEIGHT = 44
+GREEN_ASTEROID_IMAGE = "batter/assets/images\\asteroid1.png"
+GREEN_ASTEROID_WIDTH = 43
+GREEN_ASTEROID_HEIGHT = 44
+
+
+
 
 
 # LASER
@@ -130,19 +150,19 @@ SHIP_HEIGHT = 39
 SHIP_RATE = 6
 SHIP_VELOCITY = 7
 
-# # BRICK
-# BRICK_GROUP = "bricks"
-# BRICK_IMAGES = {
-#     "b": [f"batter/assets/images\\{i:03}.png" for i in range(10,19)],
-#     "g": [f"batter/assets/images\\{i:03}.png" for i in range(20,29)],
-#     "p": [f"batter/assets/images\\{i:03}.png" for i in range(30,39)],
-#     "y": [f"batter/assets/images\\{i:03}.png" for i in range(40,49)]
-# }
-# BRICK_WIDTH = 80
-# BRICK_HEIGHT = 28
-# BRICK_DELAY = 0.5
-# BRICK_RATE = 4
-# BRICK_POINTS = 50
+# BRICK
+BRICK_GROUP = "bricks"
+BRICK_IMAGES = {
+    "b": [f"batter/assets/images\\{i:03}.png" for i in range(10,19)],
+    "g": [f"batter/assets/images\\{i:03}.png" for i in range(20,29)],
+    "p": [f"batter/assets/images\\{i:03}.png" for i in range(30,39)],
+    "y": [f"batter/assets/images\\{i:03}.png" for i in range(40,49)]
+}
+BRICK_WIDTH = 80
+BRICK_HEIGHT = 28
+BRICK_DELAY = 0.5
+BRICK_RATE = 4
+BRICK_POINTS = 50
 
 # DIALOG
 DIALOG_GROUP = "dialogs"

@@ -1,4 +1,5 @@
 import csv
+import random
 from constants import *
 from game.casting.animation import Animation
 from game.casting.laser import Laser
@@ -9,6 +10,7 @@ from game.casting.label import Label
 from game.casting.point import Point
 from game.casting.racket import Racket
 from game.casting.ship import Ship
+from game.casting.asteroid import Asteroid
 from game.casting.stats import Stats
 from game.casting.text import Text 
 from game.scripting.change_scene_action import ChangeSceneAction
@@ -19,6 +21,7 @@ from game.scripting.change_scene_action import ChangeSceneAction
 
 from game.scripting.control_ship_action import ControlShipAction
 from game.scripting.control_laser_action import ControlLaserAction
+from game.scripting.draw_asteroid_action import DrawAsteroidAction
 
 # from game.scripting.control_racket_action import ControlRacketAction
 from game.scripting.draw_laser_action import DrawLaserAction
@@ -30,6 +33,7 @@ from game.scripting.end_drawing_action import EndDrawingAction
 from game.scripting.initialize_devices_action import InitializeDevicesAction
 from game.scripting.load_assets_action import LoadAssetsAction
 from game.scripting.move_laser_action import MoveLaserAction
+from game.scripting.move_asteroid_action import MoveAsteroidAction
 from game.scripting.move_racket_action import MoveRacketAction
 from game.scripting.play_sound_action import PlaySoundAction
 from game.scripting.release_devices_action import ReleaseDevicesAction
@@ -60,21 +64,25 @@ class SceneManager:
     CONTROL_SHIP_ACTION = ControlShipAction(KEYBOARD_SERVICE)
     CONTROL_LASER_ACTION = ControlLaserAction(KEYBOARD_SERVICE)
     DRAW_LASER_ACTION = DrawLaserAction(VIDEO_SERVICE)
+    DRAW_ASTEROID_ACTION = DrawAsteroidAction(VIDEO_SERVICE)
     # DRAW_BRICKS_ACTION = DrawBricksAction(VIDEO_SERVICE)
     DRAW_DIALOG_ACTION = DrawDialogAction(VIDEO_SERVICE)
     DRAW_HUD_ACTION = DrawHudAction(VIDEO_SERVICE)
     DRAW_RACKET_ACTION= DrawRacketAction(VIDEO_SERVICE)
+    DRAW_SHIP_ACTION= DrawShipAction(VIDEO_SERVICE)
     END_DRAWING_ACTION = EndDrawingAction(VIDEO_SERVICE)
     INITIALIZE_DEVICES_ACTION = InitializeDevicesAction(AUDIO_SERVICE, VIDEO_SERVICE)
     LOAD_ASSETS_ACTION = LoadAssetsAction(AUDIO_SERVICE, VIDEO_SERVICE)
     MOVE_LASER_ACTION = MoveLaserAction()
     MOVE_RACKET_ACTION = MoveRacketAction()
+    MOVE_ASTEROID_ACTION = MoveAsteroidAction()
+    MOVE_SHIP_ACTION = MoveShipAction()
     RELEASE_DEVICES_ACTION = ReleaseDevicesAction(AUDIO_SERVICE, VIDEO_SERVICE)
     START_DRAWING_ACTION = StartDrawingAction(VIDEO_SERVICE)
     UNLOAD_ASSETS_ACTION = UnloadAssetsAction(AUDIO_SERVICE, VIDEO_SERVICE)
 
-    DRAW_SHIP_ACTION= DrawShipAction(VIDEO_SERVICE)
-    MOVE_SHIP_ACTION = MoveShipAction()
+    
+    
 
     def __init__(self):
         pass
@@ -101,6 +109,7 @@ class SceneManager:
         self._add_lives(cast)
         self._add_score(cast)
         self._add_ship(cast)
+        self._add_asteroid(cast)
         
         # self._add_bricks(cast)
         
@@ -115,7 +124,7 @@ class SceneManager:
         self._add_release_script(script)
         
     def _prepare_next_level(self, cast, script):
-        
+        self._add_asteroid(cast)
         # self._add_bricks(cast)
         self._add_ship(cast)
         self._add_dialog(cast, PREP_TO_LAUNCH)
@@ -129,7 +138,7 @@ class SceneManager:
         
         self._add_ship(cast)
         self._add_dialog(cast, PREP_TO_LAUNCH)
-
+        self._add_asteroid(cast)
         script.clear_actions(INPUT)
         script.add_action(INPUT, TimedChangeSceneAction(IN_PLAY, 2))
         self._add_update_script(script)
@@ -137,8 +146,9 @@ class SceneManager:
 
     def _prepare_in_play(self, cast, script):
         self._activate_laser(cast)
+        self._asteroid_fall(cast)
         cast.clear_actors(DIALOG_GROUP)
-
+        self._add_asteroid(cast)
         script.clear_actions(INPUT)
         script.add_action(INPUT, self.CONTROL_SHIP_ACTION)
         script.add_action(INPUT, self.CONTROL_LASER_ACTION)
@@ -164,6 +174,9 @@ class SceneManager:
         if self.KEYBOARD_SERVICE.is_key_down(SPACE): 
             laser.release()
         
+    def _asteroid_fall(self, cast):
+        asteroid = cast.get_first_actor(ASTEROID_GROUP)
+        asteroid.fall()
 
    
 
@@ -212,6 +225,44 @@ class SceneManager:
         racket = Racket(body, animation)
         cast.add_actor(RACKET_GROUP, racket)
 
+    def _add_asteroid(self, cast):
+        
+        image_file = random.choice([GREEN_ASTEROID_IMAGE, GRAY_ASTEROID_IMAGE, BROWN_ASTEROID_IMAGE])
+        if image_file == GREEN_ASTEROID_IMAGE:
+            x = random.randint(0, (SCREEN_WIDTH - GREEN_ASTEROID_WIDTH))
+            y = 0 #- GREEN_ASTEROID_HEIGHT
+            size = Point(GREEN_ASTEROID_WIDTH, GREEN_ASTEROID_HEIGHT)
+            
+
+        elif image_file == GRAY_ASTEROID_IMAGE:
+            x = random.randint(0, (SCREEN_WIDTH - GRAY_ASTEROID_WIDTH))
+            y = 0 #- GRAY_ASTEROID_HEIGHT
+            size = Point(GRAY_ASTEROID_WIDTH, GRAY_ASTEROID_HEIGHT)
+            
+
+        elif image_file == BROWN_ASTEROID_IMAGE:
+            x = random.randint(0, (SCREEN_WIDTH - BROWN_ASTEROID_WIDTH))
+            y = 0 #- GREEN_ASTEROID_HEIGHT
+            size = Point(BROWN_ASTEROID_WIDTH, BROWN_ASTEROID_HEIGHT)
+        
+        image = Image(image_file)
+        position = Point(x, y)
+        velocity = Point(0, ASTEROID_VELOCITY)
+        body = Body(position, size, velocity)
+        
+        asteroid = Asteroid(body, image)
+        cast.add_actor(ASTEROID_GROUP, asteroid)
+
+        
+            
+            
+                
+            
+            
+                
+            
+            
+
     
     def _add_ship(self, cast):
         cast.clear_actors(SHIP_GROUP)
@@ -240,6 +291,7 @@ class SceneManager:
         script.add_action(OUTPUT, self.START_DRAWING_ACTION)
         script.add_action(OUTPUT, self.DRAW_HUD_ACTION)
         script.add_action(OUTPUT, self.DRAW_LASER_ACTION)
+        script.add_action(OUTPUT, self.DRAW_ASTEROID_ACTION)
         # script.add_action(OUTPUT, self.DRAW_BRICKS_ACTION)
         script.add_action(OUTPUT, self.DRAW_SHIP_ACTION)
         script.add_action(OUTPUT, self.DRAW_DIALOG_ACTION)
@@ -257,6 +309,7 @@ class SceneManager:
         script.clear_actions(UPDATE)
         script.add_action(UPDATE, self.MOVE_LASER_ACTION)
         script.add_action(UPDATE, self.MOVE_SHIP_ACTION)
+        script.add_action(UPDATE, self.MOVE_ASTEROID_ACTION)
         # script.add_action(UPDATE, self.COLLIDE_BORDERS_ACTION)
         # script.add_action(UPDATE, self.COLLIDE_BRICKS_ACTION)
         # script.add_action(UPDATE, self.COLLIDE_RACKET_ACTION)
