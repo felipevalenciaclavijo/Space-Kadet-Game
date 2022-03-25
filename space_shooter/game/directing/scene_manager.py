@@ -127,7 +127,7 @@ class SceneManager:
         self._add_asteroid(cast)
         # self._add_bricks(cast)
         self._add_ship(cast)
-        self._add_dialog(cast, PREP_TO_LAUNCH)
+        self._add_dialog(cast, HOW_TO_SHOOT)
 
         script.clear_actions(INPUT)
         script.add_action(INPUT, TimedChangeSceneAction(IN_PLAY, 2))
@@ -137,7 +137,7 @@ class SceneManager:
     def _prepare_try_again(self, cast, script):
         
         self._add_ship(cast)
-        self._add_dialog(cast, PREP_TO_LAUNCH)
+        self._add_dialog(cast, HOW_TO_SHOOT)
         self._add_asteroid(cast)
         script.clear_actions(INPUT)
         script.add_action(INPUT, TimedChangeSceneAction(IN_PLAY, 2))
