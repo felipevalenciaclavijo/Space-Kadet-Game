@@ -18,6 +18,7 @@ from game.scripting.change_scene_action import ChangeSceneAction
 # from game.scripting.collide_racket_action import CollideRacketAction
 
 from game.scripting.control_ship_action import ControlShipAction
+from game.scripting.control_laser_action import ControlLaserAction
 
 # from game.scripting.control_racket_action import ControlRacketAction
 from game.scripting.draw_laser_action import DrawLaserAction
@@ -39,7 +40,7 @@ from game.services.raylib.raylib_audio_service import RaylibAudioService
 from game.services.raylib.raylib_keyboard_service import RaylibKeyboardService
 from game.services.raylib.raylib_physics_service import RaylibPhysicsService
 from game.services.raylib.raylib_video_service import RaylibVideoService
-
+from game.services.keyboard_service import KeyboardService
 from game.scripting.draw_ship_action import DrawShipAction
 from game.scripting.move_ship_action import MoveShipAction
 
@@ -57,6 +58,7 @@ class SceneManager:
     # COLLIDE_BRICKS_ACTION = CollideBrickAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     # COLLIDE_RACKET_ACTION = CollideRacketAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     CONTROL_SHIP_ACTION = ControlShipAction(KEYBOARD_SERVICE)
+    CONTROL_LASER_ACTION = ControlLaserAction(KEYBOARD_SERVICE)
     DRAW_LASER_ACTION = DrawLaserAction(VIDEO_SERVICE)
     # DRAW_BRICKS_ACTION = DrawBricksAction(VIDEO_SERVICE)
     DRAW_DIALOG_ACTION = DrawDialogAction(VIDEO_SERVICE)
@@ -123,7 +125,7 @@ class SceneManager:
         script.add_action(OUTPUT, PlaySoundAction(self.AUDIO_SERVICE, WELCOME_SOUND))
         
     def _prepare_try_again(self, cast, script):
-        self.laser(cast)
+        self._add_laser(cast)
         self._add_ship(cast)
         self._add_dialog(cast, PREP_TO_LAUNCH)
 
@@ -138,6 +140,7 @@ class SceneManager:
 
         script.clear_actions(INPUT)
         script.add_action(INPUT, self.CONTROL_SHIP_ACTION)
+        script.add_action(INPUT, self.CONTROL_LASER_ACTION)
         self._add_update_script(script)
         self._add_output_script(script)
 
@@ -157,7 +160,9 @@ class SceneManager:
     
     def _activate_laser(self, cast):
         laser = cast.get_first_actor(LASER_GROUP)
-        laser.release()
+        if self.KEYBOARD_SERVICE.is_key_down(SPACE): 
+            laser.release()
+        
 
     def _add_laser(self, cast):
         cast.clear_actors(LASER_GROUP)
