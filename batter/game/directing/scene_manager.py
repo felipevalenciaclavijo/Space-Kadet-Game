@@ -16,7 +16,10 @@ from game.scripting.check_over_action import CheckOverAction
 from game.scripting.collide_borders_action import CollideBordersAction
 from game.scripting.collide_brick_action import CollideBrickAction
 from game.scripting.collide_racket_action import CollideRacketAction
-from game.scripting.control_racket_action import ControlRacketAction
+
+from game.scripting.control_ship_action import ControlShipAction
+
+# from game.scripting.control_racket_action import ControlRacketAction
 from game.scripting.draw_ball_action import DrawBallAction
 from game.scripting.draw_bricks_action import DrawBricksAction
 from game.scripting.draw_dialog_action import DrawDialogAction
@@ -53,7 +56,7 @@ class SceneManager:
     COLLIDE_BORDERS_ACTION = CollideBordersAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     COLLIDE_BRICKS_ACTION = CollideBrickAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     COLLIDE_RACKET_ACTION = CollideRacketAction(PHYSICS_SERVICE, AUDIO_SERVICE)
-    CONTROL_RACKET_ACTION = ControlRacketAction(KEYBOARD_SERVICE)
+    CONTROL_SHIP_ACTION = ControlShipAction(KEYBOARD_SERVICE)
     DRAW_BALL_ACTION = DrawBallAction(VIDEO_SERVICE)
     DRAW_BRICKS_ACTION = DrawBricksAction(VIDEO_SERVICE)
     DRAW_DIALOG_ACTION = DrawDialogAction(VIDEO_SERVICE)
@@ -137,7 +140,7 @@ class SceneManager:
         cast.clear_actors(DIALOG_GROUP)
 
         script.clear_actions(INPUT)
-        script.add_action(INPUT, self.CONTROL_RACKET_ACTION)
+        script.add_action(INPUT, self.CONTROL_SHIP_ACTION)
         self._add_update_script(script)
         self._add_output_script(script)
 
@@ -163,7 +166,7 @@ class SceneManager:
     def _add_ball(self, cast):
         cast.clear_actors(BALL_GROUP)
         x = CENTER_X - BALL_WIDTH / 2
-        y = SCREEN_HEIGHT - RACKET_HEIGHT - BALL_HEIGHT  
+        y = SCREEN_HEIGHT - SHIP_HEIGHT - BALL_HEIGHT  
         position = Point(x, y)
         size = Point(BALL_WIDTH, BALL_HEIGHT)
         velocity = Point(0, 0)
@@ -238,17 +241,17 @@ class SceneManager:
         stats = Stats()
         cast.add_actor(STATS_GROUP, stats)
 
-    # def _add_racket(self, cast):
-    #     cast.clear_actors(RACKET_GROUP)
-    #     x = CENTER_X - RACKET_WIDTH / 2
-    #     y = SCREEN_HEIGHT - RACKET_HEIGHT
-    #     position = Point(x, y)
-    #     size = Point(RACKET_WIDTH, RACKET_HEIGHT)
-    #     velocity = Point(0, 0)
-    #     body = Body(position, size, velocity)
-    #     animation = Animation(RACKET_IMAGES, RACKET_RATE)
-    #     racket = Racket(body, animation)
-    #     cast.add_actor(RACKET_GROUP, racket)
+    def _add_racket(self, cast):
+        cast.clear_actors(RACKET_GROUP)
+        x = CENTER_X - RACKET_WIDTH / 2
+        y = SCREEN_HEIGHT - RACKET_HEIGHT
+        position = Point(x, y)
+        size = Point(RACKET_WIDTH, RACKET_HEIGHT)
+        velocity = Point(0, 0)
+        body = Body(position, size, velocity)
+        animation = Animation(RACKET_IMAGES, RACKET_RATE)
+        racket = Racket(body, animation)
+        cast.add_actor(RACKET_GROUP, racket)
 
     
     def _add_ship(self, cast):
@@ -261,7 +264,7 @@ class SceneManager:
         body = Body(position, size, velocity)
         animation = Animation(SHIP_IMAGES, SHIP_RATE)
         ship = Ship(body, animation)
-        cast.add_actor(RACKET_GROUP, ship)
+        cast.add_actor(SHIP_GROUP, ship)
     # ----------------------------------------------------------------------------------------------
     # scripting methods
     # ----------------------------------------------------------------------------------------------
@@ -279,7 +282,7 @@ class SceneManager:
         script.add_action(OUTPUT, self.DRAW_HUD_ACTION)
         script.add_action(OUTPUT, self.DRAW_BALL_ACTION)
         script.add_action(OUTPUT, self.DRAW_BRICKS_ACTION)
-        script.add_action(OUTPUT, self.DRAW_RACKET_ACTION)
+        script.add_action(OUTPUT, self.DRAW_SHIP_ACTION)
         script.add_action(OUTPUT, self.DRAW_DIALOG_ACTION)
         script.add_action(OUTPUT, self.END_DRAWING_ACTION)
 
@@ -294,9 +297,9 @@ class SceneManager:
     def _add_update_script(self, script):
         script.clear_actions(UPDATE)
         script.add_action(UPDATE, self.MOVE_BALL_ACTION)
-        script.add_action(UPDATE, self.MOVE_RACKET_ACTION)
+        script.add_action(UPDATE, self.MOVE_SHIP_ACTION)
         script.add_action(UPDATE, self.COLLIDE_BORDERS_ACTION)
         script.add_action(UPDATE, self.COLLIDE_BRICKS_ACTION)
         script.add_action(UPDATE, self.COLLIDE_RACKET_ACTION)
-        script.add_action(UPDATE, self.MOVE_RACKET_ACTION)
+        script.add_action(UPDATE, self.MOVE_SHIP_ACTION)
         script.add_action(UPDATE, self.CHECK_OVER_ACTION)
