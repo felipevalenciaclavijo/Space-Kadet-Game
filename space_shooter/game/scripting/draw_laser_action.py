@@ -9,18 +9,19 @@ class DrawLaserAction(Action):
         
     def execute(self, cast, script, callback):
         
-        laser = cast.get_first_actor(LASER_GROUP)
+        lasers = cast.get_actors(LASER_GROUP)
+        for laser in lasers:
 
-        if laser == None:
-            return
+            if laser == None:
+                return
 
-        else:
-            body = laser.get_body()
+            else:
+                body = laser.get_body()
 
-            if laser.is_debug():
-                rectangle = body.get_rectangle()
-                self._video_service.draw_rectangle(rectangle, PURPLE)
-                
-            image = laser.get_image()
-            position = body.get_position()
-            self._video_service.draw_image(image, position)
+                if laser.is_debug():
+                    rectangle = body.get_rectangle()
+                    self._video_service.draw_rectangle(rectangle, PURPLE)
+                    
+                image = laser.get_image()
+                position = body.get_position()
+                self._video_service.draw_image(image, position)

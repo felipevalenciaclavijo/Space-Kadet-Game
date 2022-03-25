@@ -145,7 +145,7 @@ class SceneManager:
         self._add_output_script(script)
 
     def _prepare_in_play(self, cast, script):
-        self._activate_laser(cast)
+        
         cast.clear_actors(DIALOG_GROUP)
         self._add_asteroid(cast)
         script.clear_actions(INPUT)
@@ -168,10 +168,7 @@ class SceneManager:
     # casting methods
     # ----------------------------------------------------------------------------------------------
     
-    def _activate_laser(self, cast):
-        laser = cast.get_first_actor(LASER_GROUP)
-        if self.KEYBOARD_SERVICE.is_key_down(SPACE): 
-            laser.release()
+    
    
 
     def _add_dialog(self, cast, message):
