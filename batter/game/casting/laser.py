@@ -37,7 +37,7 @@ class Laser(Actor):
     def release(self):
         """Release the laser straight upward."""
         
-        vx = LASER_VELOCITY
+        vx = 0
         vy = -LASER_VELOCITY
         velocity = Point(vx, vy)
         self._body.set_velocity(velocity)
