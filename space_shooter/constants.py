@@ -112,14 +112,14 @@ SCORE_FORMAT = "SCORE: {}"
 
 # ASTEROIDS
 ASTEROID_GROUP = "asteroids"
-ASTEROID_VELOCITY = 6
+ASTEROID_VELOCITY = 3
 GRAY_ASTEROID_IMAGE = "space_shooter/assets/images\\asteroid1.png"
 GRAY_ASTEROID_WIDTH = 44
 GRAY_ASTEROID_HEIGHT = 44
-BROWN_ASTEROID_IMAGE = "space_shooter/assets/images\\asteroid1.png"
+BROWN_ASTEROID_IMAGE = "space_shooter/assets/images\\asteroid2.png"
 BROWN_ASTEROID_WIDTH = 39
 BROWN_ASTEROID_HEIGHT = 44
-GREEN_ASTEROID_IMAGE = "space_shooter/assets/images\\asteroid1.png"
+GREEN_ASTEROID_IMAGE = "space_shooter/assets/images\\asteroid3.png"
 GREEN_ASTEROID_WIDTH = 43
 GREEN_ASTEROID_HEIGHT = 44
 
