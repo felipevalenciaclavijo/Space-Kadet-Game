@@ -14,7 +14,7 @@ class ControlLaserAction(Action):
     def execute(self, cast, script, callback):
         
        
-       if self._keyboard_service.is_key_down(SPACE): 
+       if self._keyboard_service.is_key_pressed(SPACE): 
            laser = self._add_laser(cast)
            laser.release()
         
