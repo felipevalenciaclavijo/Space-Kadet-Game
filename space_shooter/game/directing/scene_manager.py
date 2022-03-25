@@ -146,7 +146,6 @@ class SceneManager:
 
     def _prepare_in_play(self, cast, script):
         self._activate_laser(cast)
-        # self._asteroid_fall(cast)
         cast.clear_actors(DIALOG_GROUP)
         self._add_asteroid(cast)
         script.clear_actions(INPUT)
@@ -173,11 +172,6 @@ class SceneManager:
         laser = cast.get_first_actor(LASER_GROUP)
         if self.KEYBOARD_SERVICE.is_key_down(SPACE): 
             laser.release()
-        
-    # def _asteroid_fall(self, cast):
-    #     asteroid = cast.get_first_actor(ASTEROID_GROUP)
-    #     asteroid.fall()
-
    
 
     def _add_dialog(self, cast, message):
