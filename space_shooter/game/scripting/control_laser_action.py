@@ -21,9 +21,7 @@ class ControlLaserAction(Action):
      
 
     def _add_laser(self, cast):
-        # cast.clear_actors(LASER_GROUP)
-        # x = CENTER_X - LASER_WIDTH / 2
-        # y = SCREEN_HEIGHT - SHIP_HEIGHT - LASER_HEIGHT
+        
         ship = cast.get_first_actor(SHIP_GROUP)
         ship_position = ship.get_body().get_position()
         x = ship_position.get_x() + (SHIP_WIDTH / 2) - (LASER_WIDTH / 2)

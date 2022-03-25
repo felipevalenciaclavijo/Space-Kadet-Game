@@ -91,12 +91,12 @@ LEVEL_FORMAT = "LEVEL: {}"
 LIVES_FORMAT = "LIVES: {}"
 SCORE_FORMAT = "SCORE: {}"
 
-# BALL
-BALL_GROUP = "balls"
-BALL_IMAGE = "space_shooter/assets/images\\000.png"
-BALL_WIDTH = 28
-BALL_HEIGHT = 28
-BALL_VELOCITY = 6
+# # BALL
+# BALL_GROUP = "balls"
+# BALL_IMAGE = "space_shooter/assets/images\\000.png"
+# BALL_WIDTH = 28
+# BALL_HEIGHT = 28
+# BALL_VELOCITY = 6
 
 # # FANCIER ASTEROID GROUP WITH MULTIPLE ATTRIBUTES - NEEDS WORK
 # ASTEROID_GROUP = "asteroids"
@@ -135,12 +135,12 @@ LASER_HEIGHT = 6
 LASER_VELOCITY = 6
 
 # RACKET
-RACKET_GROUP = "rackets"
-RACKET_IMAGES = ["space_shooter/assets/images\\ship.png"]
-RACKET_WIDTH = 106
-RACKET_HEIGHT = 28
-RACKET_RATE = 6
-RACKET_VELOCITY = 7
+# RACKET_GROUP = "rackets"
+# RACKET_IMAGES = ["space_shooter/assets/images\\ship.png"]
+# RACKET_WIDTH = 106
+# RACKET_HEIGHT = 28
+# RACKET_RATE = 6
+# RACKET_VELOCITY = 7
 
 # SHIP
 SHIP_GROUP = "ships"
