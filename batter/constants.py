@@ -26,9 +26,9 @@ FONT_SMALL = 32
 FONT_LARGE = 48
 
 # SOUND
-BOUNCE_SOUND = "batter/assets/sounds\\boing.wav"
-WELCOME_SOUND = "batter/assets/sounds\\start.wav"
-OVER_SOUND = "batter/assets/sounds\\over.wav"
+BOUNCE_SOUND = "batter/assets/sounds\\laser_shoot.mp3"
+WELCOME_SOUND = "batter/assets/sounds\\space_music.mp3"
+OVER_SOUND = "batter/assets/sounds\\game_over.mp3"
 
 # TEXT
 ALIGN_CENTER = 0

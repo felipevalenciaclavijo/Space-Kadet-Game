@@ -100,9 +100,10 @@ class SceneManager:
         self._add_level(cast)
         self._add_lives(cast)
         self._add_score(cast)
+        self._add_ship(cast)
         self._add_laser(cast)
         # self._add_bricks(cast)
-        self._add_ship(cast)
+        
         self._add_dialog(cast, ENTER_TO_START)
 
         self._add_initialize_script(script)
@@ -166,8 +167,12 @@ class SceneManager:
 
     def _add_laser(self, cast):
         cast.clear_actors(LASER_GROUP)
-        x = CENTER_X - LASER_WIDTH / 2
-        y = SCREEN_HEIGHT - SHIP_HEIGHT - LASER_HEIGHT  
+        # x = CENTER_X - LASER_WIDTH / 2
+        # y = SCREEN_HEIGHT - SHIP_HEIGHT - LASER_HEIGHT
+        ship = cast.get_first_actor(SHIP_GROUP)
+        ship_position = ship.get_body().get_position()
+        x = ship_position.get_x() + (SHIP_WIDTH / 2) - (LASER_WIDTH / 2)
+        y = ship_position.get_y() - 2  
         position = Point(x, y)
         size = Point(LASER_WIDTH, LASER_HEIGHT)
         velocity = Point(0, 0)

@@ -67,3 +67,5 @@ class Ship(Actor):
         """Stops the ship from moving."""
         velocity = Point(0, 0)
         self._body.set_velocity(velocity)
+
+   
