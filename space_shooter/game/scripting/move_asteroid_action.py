@@ -8,14 +8,15 @@ class MoveAsteroidAction(Action):
         pass
         
     def execute(self, cast, script, callback):
-        asteroid = cast.get_first_actor(ASTEROID_GROUP)
+        asteroids = cast.get_actors(ASTEROID_GROUP)
+        for asteroid in asteroids:
         
-        if asteroid == None:
-            return
+            if asteroid == None:
+                return
 
-        
-        body = asteroid.get_body()
-        position = body.get_position()
-        velocity = body.get_velocity()
-        position = position.add(velocity)
-        body.set_position(position)
+            
+            body = asteroid.get_body()
+            position = body.get_position()
+            velocity = body.get_velocity()
+            position = position.add(velocity)
+            body.set_position(position)

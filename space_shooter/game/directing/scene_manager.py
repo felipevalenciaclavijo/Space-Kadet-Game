@@ -20,6 +20,7 @@ from game.scripting.change_scene_action import ChangeSceneAction
 # from game.scripting.collide_racket_action import CollideRacketAction
 
 from game.scripting.control_ship_action import ControlShipAction
+from game.scripting.control_asteroids_action import ControlAsteroidsAction
 from game.scripting.control_laser_action import ControlLaserAction
 from game.scripting.draw_asteroid_action import DrawAsteroidAction
 
@@ -63,6 +64,7 @@ class SceneManager:
     # COLLIDE_RACKET_ACTION = CollideRacketAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     CONTROL_SHIP_ACTION = ControlShipAction(KEYBOARD_SERVICE)
     CONTROL_LASER_ACTION = ControlLaserAction(KEYBOARD_SERVICE)
+    CONTROL_ASTEROIDS_ACTION = ControlAsteroidsAction(KEYBOARD_SERVICE)
     DRAW_LASER_ACTION = DrawLaserAction(VIDEO_SERVICE)
     DRAW_ASTEROID_ACTION = DrawAsteroidAction(VIDEO_SERVICE)
     # DRAW_BRICKS_ACTION = DrawBricksAction(VIDEO_SERVICE)
@@ -109,7 +111,7 @@ class SceneManager:
         self._add_lives(cast)
         self._add_score(cast)
         self._add_ship(cast)
-        self._add_asteroid(cast)
+        # self._add_asteroid(cast)
         
         # self._add_bricks(cast)
         
@@ -124,7 +126,7 @@ class SceneManager:
         self._add_release_script(script)
         
     def _prepare_next_level(self, cast, script):
-        self._add_asteroid(cast)
+        # self._add_asteroid(cast)
         # self._add_bricks(cast)
         self._add_ship(cast)
         self._add_dialog(cast, HOW_TO_SHOOT)
@@ -138,7 +140,7 @@ class SceneManager:
         
         self._add_ship(cast)
         self._add_dialog(cast, HOW_TO_SHOOT)
-        self._add_asteroid(cast)
+        # self._add_asteroid(cast)
         script.clear_actions(INPUT)
         script.add_action(INPUT, TimedChangeSceneAction(IN_PLAY, 2))
         self._add_update_script(script)
@@ -147,10 +149,11 @@ class SceneManager:
     def _prepare_in_play(self, cast, script):
         
         cast.clear_actors(DIALOG_GROUP)
-        self._add_asteroid(cast)
+        # self._add_asteroid(cast)
         script.clear_actions(INPUT)
         script.add_action(INPUT, self.CONTROL_SHIP_ACTION)
         script.add_action(INPUT, self.CONTROL_LASER_ACTION)
+        script.add_action(INPUT, self.CONTROL_ASTEROIDS_ACTION)
         self._add_update_script(script)
         self._add_output_script(script)
 
@@ -216,36 +219,7 @@ class SceneManager:
     #     racket = Racket(body, animation)
     #     cast.add_actor(RACKET_GROUP, racket)
 
-    def _add_asteroid(self, cast):
-        
-        asteroid_options = [GREEN_ASTEROID_IMAGE, GRAY_ASTEROID_IMAGE, BROWN_ASTEROID_IMAGE]
-        image_file = random.choice(asteroid_options)
-        if image_file == GREEN_ASTEROID_IMAGE:
-            x = random.randint(0, (SCREEN_WIDTH - GREEN_ASTEROID_WIDTH))
-            y = 0 - GREEN_ASTEROID_HEIGHT
-            size = Point(GREEN_ASTEROID_WIDTH, GREEN_ASTEROID_HEIGHT)
-            
-
-        elif image_file == GRAY_ASTEROID_IMAGE:
-            x = random.randint(0, (SCREEN_WIDTH - GRAY_ASTEROID_WIDTH))
-            y = 0 - GRAY_ASTEROID_HEIGHT
-            size = Point(GRAY_ASTEROID_WIDTH, GRAY_ASTEROID_HEIGHT)
-            
-
-        elif image_file == BROWN_ASTEROID_IMAGE:
-            x = random.randint(0, (SCREEN_WIDTH - BROWN_ASTEROID_WIDTH))
-            y = 0 - GREEN_ASTEROID_HEIGHT
-            size = Point(BROWN_ASTEROID_WIDTH, BROWN_ASTEROID_HEIGHT)
-        
-        image = Image(image_file)
-        position = Point(x, y)
-        velocity = Point(0, ASTEROID_VELOCITY)
-        body = Body(position, size, velocity)
-        
-        asteroid = Asteroid(body, image)
-        cast.add_actor(ASTEROID_GROUP, asteroid)
-
-        
+       
             
             
                 
