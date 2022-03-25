@@ -207,17 +207,17 @@ class SceneManager:
         stats = Stats()
         cast.add_actor(STATS_GROUP, stats)
 
-    def _add_racket(self, cast):
-        cast.clear_actors(RACKET_GROUP)
-        x = CENTER_X - RACKET_WIDTH / 2
-        y = SCREEN_HEIGHT - RACKET_HEIGHT
-        position = Point(x, y)
-        size = Point(RACKET_WIDTH, RACKET_HEIGHT)
-        velocity = Point(0, 0)
-        body = Body(position, size, velocity)
-        animation = Animation(RACKET_IMAGES, RACKET_RATE)
-        racket = Racket(body, animation)
-        cast.add_actor(RACKET_GROUP, racket)
+    # def _add_racket(self, cast):
+    #     cast.clear_actors(RACKET_GROUP)
+    #     x = CENTER_X - RACKET_WIDTH / 2
+    #     y = SCREEN_HEIGHT - RACKET_HEIGHT
+    #     position = Point(x, y)
+    #     size = Point(RACKET_WIDTH, RACKET_HEIGHT)
+    #     velocity = Point(0, 0)
+    #     body = Body(position, size, velocity)
+    #     animation = Animation(RACKET_IMAGES, RACKET_RATE)
+    #     racket = Racket(body, animation)
+    #     cast.add_actor(RACKET_GROUP, racket)
 
     def _add_asteroid(self, cast):
         
