@@ -14,15 +14,14 @@ class ControlLaserAction(Action):
     def execute(self, cast, script, callback):
         
        
-        if self._keyboard_service.is_key_down(SPACE): 
-            self._add_laser(cast)
-            laser = cast.get_first_actor(LASER_GROUP)
-            laser.release()
+       if self._keyboard_service.is_key_down(SPACE): 
+           laser = self._add_laser(cast)
+           laser.release()
         
      
 
     def _add_laser(self, cast):
-        cast.clear_actors(LASER_GROUP)
+        # cast.clear_actors(LASER_GROUP)
         # x = CENTER_X - LASER_WIDTH / 2
         # y = SCREEN_HEIGHT - SHIP_HEIGHT - LASER_HEIGHT
         ship = cast.get_first_actor(SHIP_GROUP)
@@ -36,3 +35,4 @@ class ControlLaserAction(Action):
         image = Image(LASER_IMAGE)
         laser = Laser(body, image, True)
         cast.add_actor(LASER_GROUP, laser)
+        return laser
