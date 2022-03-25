@@ -146,7 +146,7 @@ class SceneManager:
 
     def _prepare_in_play(self, cast, script):
         self._activate_laser(cast)
-        self._asteroid_fall(cast)
+        # self._asteroid_fall(cast)
         cast.clear_actors(DIALOG_GROUP)
         self._add_asteroid(cast)
         script.clear_actions(INPUT)
@@ -174,9 +174,9 @@ class SceneManager:
         if self.KEYBOARD_SERVICE.is_key_down(SPACE): 
             laser.release()
         
-    def _asteroid_fall(self, cast):
-        asteroid = cast.get_first_actor(ASTEROID_GROUP)
-        asteroid.fall()
+    # def _asteroid_fall(self, cast):
+    #     asteroid = cast.get_first_actor(ASTEROID_GROUP)
+    #     asteroid.fall()
 
    
 
@@ -227,22 +227,23 @@ class SceneManager:
 
     def _add_asteroid(self, cast):
         
-        image_file = random.choice([GREEN_ASTEROID_IMAGE, GRAY_ASTEROID_IMAGE, BROWN_ASTEROID_IMAGE])
+        asteroid_options = [GREEN_ASTEROID_IMAGE, GRAY_ASTEROID_IMAGE, BROWN_ASTEROID_IMAGE]
+        image_file = random.choice(asteroid_options)
         if image_file == GREEN_ASTEROID_IMAGE:
             x = random.randint(0, (SCREEN_WIDTH - GREEN_ASTEROID_WIDTH))
-            y = 0 #- GREEN_ASTEROID_HEIGHT
+            y = 0 - GREEN_ASTEROID_HEIGHT
             size = Point(GREEN_ASTEROID_WIDTH, GREEN_ASTEROID_HEIGHT)
             
 
         elif image_file == GRAY_ASTEROID_IMAGE:
             x = random.randint(0, (SCREEN_WIDTH - GRAY_ASTEROID_WIDTH))
-            y = 0 #- GRAY_ASTEROID_HEIGHT
+            y = 0 - GRAY_ASTEROID_HEIGHT
             size = Point(GRAY_ASTEROID_WIDTH, GRAY_ASTEROID_HEIGHT)
             
 
         elif image_file == BROWN_ASTEROID_IMAGE:
             x = random.randint(0, (SCREEN_WIDTH - BROWN_ASTEROID_WIDTH))
-            y = 0 #- GREEN_ASTEROID_HEIGHT
+            y = 0 - GREEN_ASTEROID_HEIGHT
             size = Point(BROWN_ASTEROID_WIDTH, BROWN_ASTEROID_HEIGHT)
         
         image = Image(image_file)
