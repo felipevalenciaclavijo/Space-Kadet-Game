@@ -4,18 +4,23 @@ from game.casting.point import Point
 from game.casting.image import Image
 from game.casting.laser import Laser
 from game.casting.body import Body
+from game.casting.sound import Sound
+
 
 
 class ControlLaserAction(Action):
 
-    def __init__(self, keyboard_service):
+    def __init__(self, keyboard_service, audio_service):
         self._keyboard_service = keyboard_service
+        self._audio_service = audio_service
         
     def execute(self, cast, script, callback):
         
        
        if self._keyboard_service.is_key_pressed(SPACE): 
            laser = self._add_laser(cast)
+           sound = Sound(LASER_SHOOT_SOUND)
+           self._audio_service.play_sound(sound)
            laser.release()
         
      
