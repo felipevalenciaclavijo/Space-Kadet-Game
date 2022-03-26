@@ -29,6 +29,10 @@ FONT_LARGE = 48
 BOUNCE_SOUND = "space_shooter/assets/sounds\\laser_shoot.mp3"
 WELCOME_SOUND = "space_shooter/assets/sounds\\space_music.mp3"
 OVER_SOUND = "space_shooter/assets/sounds\\game_over.mp3"
+LASER_SHOOT_SOUND = "space_shooter/assets/sounds\\laser_shoot.mp3"
+LASER_HIT_SOUND = "space_shooter/assets/sounds\\laser_hit.mp3"
+ASTEROID_HITS_SHIP_SOUND = "space_shooter/assets/sounds\\ship_crash.mp3"
+
 
 # TEXT
 ALIGN_CENTER = 0
