@@ -152,7 +152,7 @@ SHIP_IMAGES = ["space_shooter/assets/images\\ship.png"]
 SHIP_WIDTH = 28
 SHIP_HEIGHT = 39
 SHIP_RATE = 6
-SHIP_VELOCITY = 7
+SHIP_VELOCITY = 4
 
 # BRICK
 BRICK_GROUP = "bricks"
