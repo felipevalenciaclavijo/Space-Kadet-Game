@@ -61,8 +61,8 @@ IN_PLAY = 3
 GAME_OVER = 4
 
 # LEVELS
-LEVEL_FILE = "space_shooter/assets/data\\level-{:03}.txt"
-BASE_LEVELS = 5
+#LEVEL_FILE = "space_shooter/assets/data\\level-{:03}.txt"
+#BASE_LEVELS = 5
 
 # -------------------------------------------------------------------------------------------------- 
 # SCRIPTING CONSTANTS
@@ -88,10 +88,11 @@ MAXIMUM_LIVES = 5
 
 # HUD
 HUD_MARGIN = 15
-LEVEL_GROUP = "level"
+#LEVEL_GROUP = "level"
+HITS_GROUP = "hits"
 LIVES_GROUP = "lives"
 SCORE_GROUP = "score"
-LEVEL_FORMAT = "LEVEL: {}"
+HITS_FORMAT = "HITS: {}"
 LIVES_FORMAT = "LIVES: {}"
 SCORE_FORMAT = "SCORE: {}"
 

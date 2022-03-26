@@ -109,7 +109,7 @@ class SceneManager:
     
     def _prepare_new_game(self, cast, script):
         self._add_stats(cast)
-        self._add_level(cast)
+        self._add_hits(cast)
         self._add_lives(cast)
         self._add_score(cast)
         self._add_ship(cast)
@@ -183,12 +183,12 @@ class SceneManager:
         label = Label(text, position)
         cast.add_actor(DIALOG_GROUP, label)
 
-    def _add_level(self, cast):
-        cast.clear_actors(LEVEL_GROUP)
-        text = Text(LEVEL_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_LEFT)
+    def _add_hits(self, cast):
+        cast.clear_actors(HITS_GROUP)
+        text = Text(HITS_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_LEFT)
         position = Point(HUD_MARGIN, HUD_MARGIN)
         label = Label(text, position)
-        cast.add_actor(LEVEL_GROUP, label)
+        cast.add_actor(HITS_GROUP, label)
 
     def _add_lives(self, cast):
         cast.clear_actors(LIVES_GROUP)
