@@ -23,10 +23,12 @@ class CollideAsteroidAction(Action):
             if self._physics_service.has_collided(ship_body, asteroid_body):
    
                 # ball.bounce_y()
-                # sound = Sound(BOUNCE_SOUND)
+                #sound = Sound(BOUNCE_SOUND)
                 # self._audio_service.play_sound(sound)
-                # points = asteroid.get_points()
-                # stats.add_points(points)
+                hits = asteroid.get_hits()
+                stats.add_hits(hits)
+                points = asteroid.get_points()
+                stats.add_points(points)
                 cast.clear_actors(ASTEROID_GROUP) # Eliminates all the asteroids - Felipe
                 stats = cast.get_first_actor(STATS_GROUP)
                 stats.lose_life()
