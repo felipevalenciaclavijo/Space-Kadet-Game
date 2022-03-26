@@ -17,7 +17,7 @@ class ControlAsteroidsAction(Action):
         
        self._count += 1
 
-       if (self._count % 40) == 0: 
+       if (self._count % 10) == 0: 
            asteroid = self._add_asteroid(cast)
            asteroid.fall()
         
