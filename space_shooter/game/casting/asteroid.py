@@ -13,6 +13,7 @@ class Asteroid(Actor):
             body: A new instance of Body.
             image: A new instance of Image.
             debug: If it is being debugged. 
+            points: point value of each asteroid
         """
         super().__init__(debug)
         self._body = body
@@ -44,9 +45,9 @@ class Asteroid(Actor):
         self._body.set_velocity(velocity)
     
     def get_points(self): # morgan added
-        """Gets the brick's points.
+        """Gets the asteroids's points.
         
         Returns:
-            A number representing the brick's points.
+            A number representing the asteroids's points.
         """
         return self._points
