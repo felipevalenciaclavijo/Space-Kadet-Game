@@ -19,6 +19,7 @@ from game.scripting.change_scene_action import ChangeSceneAction
 # from game.scripting.collide_brick_action import CollideBrickAction
 # from game.scripting.collide_racket_action import CollideRacketAction
 from game.scripting.collide_asteroid_action import CollideAsteroidAction # Added this one - Felipe
+from game.scripting.collide_laser_action import CollideLaserAction
 
 from game.scripting.control_ship_action import ControlShipAction
 from game.scripting.control_asteroids_action import ControlAsteroidsAction
@@ -63,6 +64,7 @@ class SceneManager:
     # COLLIDE_BORDERS_ACTION = CollideBordersAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     # COLLIDE_BRICKS_ACTION = CollideBrickAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     COLLIDE_ASTEROIDS_ACTION = CollideAsteroidAction(PHYSICS_SERVICE, AUDIO_SERVICE)
+    COLLIDE_LASER_ACTION = CollideLaserAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     # COLLIDE_RACKET_ACTION = CollideRacketAction(PHYSICS_SERVICE, AUDIO_SERVICE)
     CONTROL_SHIP_ACTION = ControlShipAction(KEYBOARD_SERVICE)
     CONTROL_LASER_ACTION = ControlLaserAction(KEYBOARD_SERVICE, AUDIO_SERVICE)
@@ -281,6 +283,7 @@ class SceneManager:
         # script.add_action(UPDATE, self.COLLIDE_BORDERS_ACTION)
         # script.add_action(UPDATE, self.COLLIDE_BRICKS_ACTION)
         script.add_action(UPDATE, self.COLLIDE_ASTEROIDS_ACTION)
+        script.add_action(UPDATE, self.COLLIDE_LASER_ACTION) # morgan added
         # script.add_action(UPDATE, self.COLLIDE_RACKET_ACTION)
         script.add_action(UPDATE, self.MOVE_SHIP_ACTION)
         # script.add_action(UPDATE, self.CHECK_OVER_ACTION)

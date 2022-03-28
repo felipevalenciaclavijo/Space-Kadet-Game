@@ -47,8 +47,9 @@ class ControlAsteroidsAction(Action):
         position = Point(x, y)
         velocity = Point(0, ASTEROID_VELOCITY)
         body = Body(position, size, velocity)
-        
-        asteroid = Asteroid(body, image)
+        points = ASTEROID_POINTS # morgan added points
+
+        asteroid = Asteroid(body, image, points) # morgan added points
         cast.add_actor(ASTEROID_GROUP, asteroid)
         return asteroid
 
