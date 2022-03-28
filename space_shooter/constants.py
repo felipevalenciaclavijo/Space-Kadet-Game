@@ -128,6 +128,7 @@ GREEN_ASTEROID_IMAGE = "space_shooter/assets/images\\asteroid3.png"
 GREEN_ASTEROID_WIDTH = 43
 GREEN_ASTEROID_HEIGHT = 44
 ASTEROID_POINTS = 10 # morgan added
+ASTEROID_HIT = 1
 
 
 

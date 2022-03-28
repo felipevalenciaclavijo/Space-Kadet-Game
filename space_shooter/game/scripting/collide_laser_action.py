@@ -26,6 +26,8 @@ class CollideLaserAction(Action):
                     if self._physics_service.has_collided(laser_body, asteroid_body):
                         sound = Sound(LASER_HIT_SOUND)
                         self._audio_service.play_sound(sound)
+                        hits = asteroid.get_hits()
+                        stats.add_hits(hits)
                         points = asteroid.get_points()
                         stats.add_points(points)
                         cast.remove_actor(ASTEROID_GROUP, asteroid)
