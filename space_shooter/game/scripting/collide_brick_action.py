@@ -1,4 +1,4 @@
-from constants import *
+"""from constants import *
 from game.casting.sound import Sound
 from game.scripting.action import Action
 
@@ -24,4 +24,4 @@ class CollideBrickAction(Action):
                 self._audio_service.play_sound(sound)
                 points = brick.get_points()
                 stats.add_points(points)
-                cast.remove_actor(BRICK_GROUP, brick)
+                cast.remove_actor(BRICK_GROUP, brick)"""

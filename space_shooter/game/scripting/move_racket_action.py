@@ -1,4 +1,4 @@
-from constants import *
+"""from constants import *
 from game.casting.point import Point
 from game.scripting.action import Action
 
@@ -22,5 +22,5 @@ class MoveRacketAction(Action):
         elif x > (SCREEN_WIDTH - RACKET_WIDTH):
             position = Point(SCREEN_WIDTH - RACKET_WIDTH, position.get_y())
             
-        body.set_position(position)
+        body.set_position(position)"""
         

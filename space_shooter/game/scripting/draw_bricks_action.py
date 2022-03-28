@@ -1,4 +1,4 @@
-from constants import *
+"""from constants import *
 from game.scripting.action import Action
 
 
@@ -20,4 +20,4 @@ class DrawBricksAction(Action):
             animation = brick.get_animation()
             image = animation.next_image()
             position = body.get_position()
-            self._video_service.draw_image(image, position)
+            self._video_service.draw_image(image, position)"""
