@@ -31,9 +31,4 @@ class CollideLaserAction(Action):
                         points = asteroid.get_points()
                         stats.add_points(points)
                         cast.remove_actor(ASTEROID_GROUP, asteroid)
-                        cast.remove_actor(LASER_GROUP, laser)
-
-
-
-
-                    
+                        cast.remove_actor(LASER_GROUP, laser)               

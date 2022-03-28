@@ -31,13 +31,13 @@ from game.scripting.draw_laser_action import DrawLaserAction
 # from game.scripting.draw_bricks_action import DrawBricksAction
 from game.scripting.draw_dialog_action import DrawDialogAction
 from game.scripting.draw_hud_action import DrawHudAction
-from game.scripting.draw_racket_action import DrawRacketAction
+#from game.scripting.draw_racket_action import DrawRacketAction
 from game.scripting.end_drawing_action import EndDrawingAction
 from game.scripting.initialize_devices_action import InitializeDevicesAction
 from game.scripting.load_assets_action import LoadAssetsAction
 from game.scripting.move_laser_action import MoveLaserAction
 from game.scripting.move_asteroid_action import MoveAsteroidAction
-from game.scripting.move_racket_action import MoveRacketAction
+#from game.scripting.move_racket_action import MoveRacketAction
 from game.scripting.play_sound_action import PlaySoundAction
 from game.scripting.release_devices_action import ReleaseDevicesAction
 from game.scripting.start_drawing_action import StartDrawingAction
@@ -74,13 +74,13 @@ class SceneManager:
     # DRAW_BRICKS_ACTION = DrawBricksAction(VIDEO_SERVICE)
     DRAW_DIALOG_ACTION = DrawDialogAction(VIDEO_SERVICE)
     DRAW_HUD_ACTION = DrawHudAction(VIDEO_SERVICE)
-    DRAW_RACKET_ACTION= DrawRacketAction(VIDEO_SERVICE)
+    #DRAW_RACKET_ACTION= DrawRacketAction(VIDEO_SERVICE)
     DRAW_SHIP_ACTION= DrawShipAction(VIDEO_SERVICE)
     END_DRAWING_ACTION = EndDrawingAction(VIDEO_SERVICE)
     INITIALIZE_DEVICES_ACTION = InitializeDevicesAction(AUDIO_SERVICE, VIDEO_SERVICE)
     LOAD_ASSETS_ACTION = LoadAssetsAction(AUDIO_SERVICE, VIDEO_SERVICE)
     MOVE_LASER_ACTION = MoveLaserAction()
-    MOVE_RACKET_ACTION = MoveRacketAction()
+    #MOVE_RACKET_ACTION = MoveRacketAction()
     MOVE_ASTEROID_ACTION = MoveAsteroidAction()
     MOVE_SHIP_ACTION = MoveShipAction()
     RELEASE_DEVICES_ACTION = ReleaseDevicesAction(AUDIO_SERVICE, VIDEO_SERVICE)

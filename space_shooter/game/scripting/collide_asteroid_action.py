@@ -30,6 +30,7 @@ class CollideAsteroidAction(Action):
                 points = asteroid.get_points()
                 stats.add_points(points)
                 cast.clear_actors(ASTEROID_GROUP) # Eliminates all the asteroids - Felipe
+                cast.clear_actors(LASER_GROUP)
                 stats = cast.get_first_actor(STATS_GROUP)
                 stats.lose_life()
             

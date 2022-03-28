@@ -1,4 +1,4 @@
-from constants import *
+"""from constants import *
 from game.scripting.action import Action
 
 
@@ -14,4 +14,4 @@ class ControlRacketAction(Action):
         elif self._keyboard_service.is_key_down(RIGHT): 
             racket.swing_right()  
         else: 
-            racket.stop_moving()        
+            racket.stop_moving()       """ 
