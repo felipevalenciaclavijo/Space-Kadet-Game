@@ -25,11 +25,11 @@ class Stats(Actor):
         """
         self._score += points
 
-    def add_hit(self, hits):
+    def add_hits(self, hits):
         """Adds a hit for every asteroid destroyed.
 
         Returns:
-            A number representing the level.
+            A number representing the # of asteroids hit.
         """
         self._hits += hits
 

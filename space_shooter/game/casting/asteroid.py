@@ -6,7 +6,7 @@ from game.casting.point import Point
 class Asteroid(Actor):
     """A space rock."""
     
-    def __init__(self, body, image, points, debug = False):
+    def __init__(self, body, image, points, hits, debug = False):
         """Constructs a new Asteroid.
 
         Args:
@@ -19,6 +19,7 @@ class Asteroid(Actor):
         self._body = body
         self._image = image
         self._points = points # morgan added
+        self._hits = hits 
 
     def get_body(self):
         """Gets the asteroid's body.
@@ -51,3 +52,11 @@ class Asteroid(Actor):
             A number representing the asteroids's points.
         """
         return self._points
+
+    def get_hits(self): 
+        """Gets the # of asteroids hit.
+        
+        Returns:
+            A number representing that one asteroid was hit.
+        """
+        return self._hits
