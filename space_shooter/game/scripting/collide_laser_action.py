@@ -43,7 +43,10 @@ class CollideLaserAction(Action):
                         image = asteroid.get_image() # get latest asteroid image
                         position = asteroid_body.get_position() # get position of the body of the asteroid
                         self._video_service.draw_image(image, position) # use the video service to draw the new image
-                        cast.remove_actor(LASER_GROUP, laser)
+                        
+                        if laser in lasers:
+                            cast.remove_actor(LASER_GROUP, laser)
+                        
                         if remove == TRUE:
                             cast.remove_actor(ASTEROID_GROUP, asteroid)
     
