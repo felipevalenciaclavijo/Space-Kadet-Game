@@ -1,5 +1,6 @@
 from constants import *
 from game.scripting.action import Action
+from game.casting.point import Point
 
 
 class MoveAsteroidAction(Action):
@@ -20,3 +21,7 @@ class MoveAsteroidAction(Action):
             velocity = body.get_velocity()
             position = position.add(velocity)
             body.set_position(position)
+            
+                
+
+               

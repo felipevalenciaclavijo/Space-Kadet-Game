@@ -24,4 +24,10 @@ class DrawLaserAction(Action):
                     
                 image = laser.get_image()
                 position = body.get_position()
+
+                y = position.get_y()
+                if y <= FIELD_TOP:
+                    lasers.remove(laser)
+
+
                 self._video_service.draw_image(image, position)
