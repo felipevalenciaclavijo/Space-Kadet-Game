@@ -36,6 +36,16 @@ class Asteroid(Actor):
             An instance of Image.
         """
         return self._image
+
+    def set_image(self, next_image):
+        """Changes the asteroid's image.
+        
+        Returns:
+            An instance of Image.
+        """
+        self._image = next_image
+        
+        return self._image
         
     def fall(self):
         """Release the asteroid downward."""
