@@ -19,11 +19,11 @@ class MoveLaserAction(Action):
             position = body.get_position()
             velocity = body.get_velocity()
             position = position.add(velocity)
-            y = position.get_y()
-            if y <= FIELD_TOP:
-                lasers.remove(laser)
-            
             body.set_position(position)
+
+            
+            
+            
 
             
 

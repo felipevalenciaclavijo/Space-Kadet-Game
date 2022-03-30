@@ -1,5 +1,6 @@
 from constants import *
 from game.scripting.action import Action
+from game.casting.point import Point
 
 
 class DrawAsteroidAction(Action):
@@ -20,4 +21,13 @@ class DrawAsteroidAction(Action):
             
             image = asteroid.get_image()
             position = body.get_position()
+
+            x = position.get_x()
+            y = position.get_y()
+
+            if y >= (FIELD_BOTTOM):
+                y = FIELD_TOP
+                position = Point(x, (y - 44))
+                body.set_position(position)
+
             self._video_service.draw_image(image, position)
