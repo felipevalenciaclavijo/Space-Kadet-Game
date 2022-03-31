@@ -8,7 +8,7 @@ from game.casting.body import Body
 from game.casting.image import Image
 from game.casting.label import Label
 from game.casting.point import Point
-from game.casting.racket import Racket
+#from game.casting.racket import Racket
 from game.casting.ship import Ship
 from game.casting.asteroid import Asteroid
 from game.casting.stats import Stats

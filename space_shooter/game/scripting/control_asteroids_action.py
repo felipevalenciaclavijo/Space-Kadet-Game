@@ -30,24 +30,27 @@ class ControlAsteroidsAction(Action):
             x = random.randint(0, (SCREEN_WIDTH - GREEN_ASTEROID_WIDTH))
             y = 0 - GREEN_ASTEROID_HEIGHT
             size = Point(GREEN_ASTEROID_WIDTH, GREEN_ASTEROID_HEIGHT)
+            points = ASTEROID_POINTS_GREEN
             
 
         elif image_file == GRAY_ASTEROID_IMAGE:
             x = random.randint(0, (SCREEN_WIDTH - GRAY_ASTEROID_WIDTH))
             y = 0 - GRAY_ASTEROID_HEIGHT
             size = Point(GRAY_ASTEROID_WIDTH, GRAY_ASTEROID_HEIGHT)
+            points = ASTEROID_POINTS_GRAY
             
 
         elif image_file == BROWN_ASTEROID_IMAGE:
             x = random.randint(0, (SCREEN_WIDTH - BROWN_ASTEROID_WIDTH))
             y = 0 - GREEN_ASTEROID_HEIGHT
             size = Point(BROWN_ASTEROID_WIDTH, BROWN_ASTEROID_HEIGHT)
+            points = ASTEROID_POINTS_BROWN
         
         image = Image(image_file)
         position = Point(x, y)
         velocity = Point(0, ASTEROID_VELOCITY)
         body = Body(position, size, velocity)
-        points = ASTEROID_POINTS # morgan added points
+        
         hits = ASTEROID_HIT
 
         asteroid = Asteroid(body, image, points, hits) # morgan added points
