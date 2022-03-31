@@ -22,9 +22,6 @@ class CollideAsteroidAction(Action):
 
             if self._physics_service.has_collided(ship_body, asteroid_body):
    
-                # ball.bounce_y()
-                #sound = Sound(BOUNCE_SOUND)
-                # self._audio_service.play_sound(sound)
                 hits = asteroid.get_hits()
                 stats.add_hits(hits)
                 points = asteroid.get_points()
