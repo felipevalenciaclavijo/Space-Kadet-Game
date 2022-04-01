@@ -45,10 +45,10 @@ class CollideLaserAction(Action):
                         self._video_service.draw_image(image, position) # use the video service to draw the new image
                         
                         if laser in lasers:
-                            cast.remove_actor(LASER_GROUP, laser)
-                        
-                        if remove == TRUE:
-                            cast.remove_actor(ASTEROID_GROUP, asteroid)
+                            
+                            if remove == TRUE:
+                                cast.remove_actor(LASER_GROUP, laser)
+                                cast.remove_actor(ASTEROID_GROUP, asteroid)
     
     def _handle_asteroid(self, image, size, remove = FALSE):
         
