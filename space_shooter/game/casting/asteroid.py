@@ -38,7 +38,11 @@ class Asteroid(Actor):
         return self._image
 
     def set_image(self, next_image):
-        """Changes the asteroid's image.
+        """Changes the asteroid's image with a
+        new one.
+        Arg:
+            next_image: A new instance of Image
+            to replace the old one.
         
         Returns:
             An instance of Image.
