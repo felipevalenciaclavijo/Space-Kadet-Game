@@ -18,13 +18,15 @@ class CollideLaserAction(Action):
         asteroids = cast.get_actors(ASTEROID_GROUP)
         stats = cast.get_first_actor(STATS_GROUP)
 
-        if lasers != []:
-            for laser in lasers:
-                laser_body = laser.get_body()
+        # if lasers != []:
+        for laser in lasers:
+            laser_body = laser.get_body()
 
-                for asteroid in asteroids:
-                    laser_body = laser.get_body()
-                    asteroid_body = asteroid.get_body()
+            for asteroid in asteroids:
+                # laser_body = laser.get_body() # Checking for errors here - Felipe
+                asteroid_body = asteroid.get_body()
+
+
 
                     if self._physics_service.has_collided(laser_body, asteroid_body):
                         sound = Sound(LASER_HIT_SOUND)
@@ -49,8 +51,19 @@ class CollideLaserAction(Action):
                             if remove == TRUE:
                                 cast.remove_actor(LASER_GROUP, laser)
                                 cast.remove_actor(ASTEROID_GROUP, asteroid)
+
     
     def _handle_asteroid(self, image, size, remove = FALSE):
+        """changes asteroids images and sizes as well as decides
+        when to remove asteroids.
+        
+        Args:
+            image: The image filename of the current asteroid
+            size: The current size of the asteroid.
+
+        returns:
+            A new image, new size, and a boolean value.
+        """
         
         if image == GRAY_ASTEROID_IMAGE:
             new_image = GRAY_ASTEROID_B_IMAGE
