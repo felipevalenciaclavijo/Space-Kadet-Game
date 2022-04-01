@@ -18,13 +18,12 @@ class CollideLaserAction(Action):
         asteroids = cast.get_actors(ASTEROID_GROUP)
         stats = cast.get_first_actor(STATS_GROUP)
 
-        # if lasers != []:
-        for laser in lasers:
-            laser_body = laser.get_body()
+        if lasers != []:
+            for laser in lasers:
+                laser_body = laser.get_body()
 
-            for asteroid in asteroids:
-                # laser_body = laser.get_body() # Checking for errors here - Felipe
-                asteroid_body = asteroid.get_body()
+                for asteroid in asteroids:
+                    asteroid_body = asteroid.get_body()
 
 
 
