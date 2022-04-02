@@ -23,7 +23,6 @@ class RaylibAudioService(AudioService):
         filepath = sound.get_filename()
         volume = sound.get_volume()
         sound = self._sounds[filepath]
-        # pyray.set_sound_volume(volume)
         pyray.play_sound(sound)
     
     def release(self):

@@ -62,7 +62,7 @@ class RaylibVideoService(VideoService):
 
         if alignment == ALIGN_CENTER:
             x = (position.get_x() - text_image.width / 2) 
-            # y = (position.get_y() - text_image.height / 2)
+            
         elif alignment == ALIGN_RIGHT:
             x = (position.get_x() - text_image.width) 
 
