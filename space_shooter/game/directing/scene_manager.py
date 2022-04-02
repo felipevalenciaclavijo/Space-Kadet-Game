@@ -69,9 +69,17 @@ class SceneManager:
     
 
     def __init__(self):
+        """Constructs a new SceneManager."""
         pass
 
     def prepare_scene(self, scene, cast, script):
+        """Prepares each scene of the instance of the game.
+        
+        Args:
+            scene: an integer that chooses which scene to play
+            cast: an object that holds all actors needed for the scene
+            script: an object that tells the actors what to do.
+        """
         if scene == NEW_GAME:
             self._prepare_new_game(cast, script)
         elif scene == NEXT_LEVEL:
@@ -88,6 +96,12 @@ class SceneManager:
     # ----------------------------------------------------------------------------------------------
     
     def _prepare_new_game(self, cast, script):
+        """Prepares a new game scene to be displayed in the game window
+        
+            Args:
+                cast: an object that holds all actors needed for the scene
+                script: an object that tells the actors what to do.
+        """
         self._add_stats(cast)
         self._add_hits(cast)
         self._add_lives(cast)
@@ -103,6 +117,12 @@ class SceneManager:
         self._add_release_script(script)
         
     def _prepare_next_level(self, cast, script):
+        """Prepares a level to be displayed in the game window
+        
+            Args:
+                cast: an object that holds all actors needed for the scene
+                script: an object that tells the actors what to do.
+        """
         self._add_ship(cast)
         self._add_dialog(cast, HOW_TO_SHOOT)
         script.clear_actions(INPUT)
@@ -111,6 +131,12 @@ class SceneManager:
         script.add_action(OUTPUT, PlaySoundAction(self.AUDIO_SERVICE, WELCOME_SOUND))
         
     def _prepare_try_again(self, cast, script):
+        """Prepares the new game scene to be displayed in the game window
+        
+            Args:
+                cast: an object that holds all actors needed for the scene
+                script: an object that tells the actors what to do.
+        """
         self._add_ship(cast)
         self._add_dialog(cast, HOW_TO_SHOOT)
         script.clear_actions(INPUT)
@@ -119,6 +145,12 @@ class SceneManager:
         self._add_output_script(script)
 
     def _prepare_in_play(self, cast, script):
+        """Prepares the scene where the player can play the game.
+        
+            Args:
+                cast: an object that holds all actors needed for the scene
+                script: an object that tells the actors what to do.
+        """
         cast.clear_actors(DIALOG_GROUP)
         script.clear_actions(INPUT)
         script.add_action(INPUT, self.CONTROL_SHIP_ACTION)
@@ -128,6 +160,12 @@ class SceneManager:
         self._add_output_script(script)
 
     def _prepare_game_over(self, cast, script):
+        """Prepares the game over screen when the player loses all lives.
+        
+            Args:
+                cast: an object that holds all actors needed for the scene
+                script: an object that tells the actors what to do.
+        """
         self._add_ship(cast)
         self._add_dialog(cast, WAS_GOOD_GAME)
         script.clear_actions(INPUT)
@@ -143,6 +181,12 @@ class SceneManager:
    
 
     def _add_dialog(self, cast, message):
+        """Adds a message to the center of the screen to inform the user.
+        
+            Args:
+                cast: an object that holds all actors needed for the scene.
+                message: a string that tells the message to be displayed in the scene.
+        """
         cast.clear_actors(DIALOG_GROUP)
         text = Text(message, FONT_FILE, FONT_SMALL, ALIGN_CENTER)
         position = Point(CENTER_X, CENTER_Y)
@@ -150,6 +194,11 @@ class SceneManager:
         cast.add_actor(DIALOG_GROUP, label)
 
     def _add_hits(self, cast):
+        """Adds hits to the HUD to be diplayed.
+        
+            Args:
+                cast: an object that holds all actors needed for the scene.
+        """
         cast.clear_actors(HITS_GROUP)
         text = Text(HITS_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_LEFT)
         position = Point(HUD_MARGIN, HUD_MARGIN)
@@ -157,6 +206,11 @@ class SceneManager:
         cast.add_actor(HITS_GROUP, label)
 
     def _add_lives(self, cast):
+        """Adds lives left to the HUD to be diplayed.
+        
+            Args:
+                cast: an object that holds all actors needed for the scene.
+        """
         cast.clear_actors(LIVES_GROUP)
         text = Text(LIVES_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_RIGHT)
         position = Point(SCREEN_WIDTH - HUD_MARGIN, HUD_MARGIN)
@@ -164,6 +218,11 @@ class SceneManager:
         cast.add_actor(LIVES_GROUP, label)
 
     def _add_score(self, cast):
+        """Adds the accumulated score to the HUD to be diplayed.
+        
+            Args:
+                cast: an object that holds all actors needed for the scene.
+        """
         cast.clear_actors(SCORE_GROUP)
         text = Text(SCORE_FORMAT, FONT_FILE, FONT_SMALL, ALIGN_CENTER)
         position = Point(CENTER_X, HUD_MARGIN)
@@ -171,11 +230,21 @@ class SceneManager:
         cast.add_actor(SCORE_GROUP, label)
 
     def _add_stats(self, cast):
+        """Adds the stats to the HUD to be diplayed.
+        
+            Args:
+                cast: an object that holds all actors needed for the scene.
+        """
         cast.clear_actors(STATS_GROUP)
         stats = Stats()
         cast.add_actor(STATS_GROUP, stats)
 
     def _add_ship(self, cast):
+        """Adds the ship Actor object to the cast.
+        
+            Args:
+                cast: an object that holds all actors needed for the scene.
+        """
         cast.clear_actors(SHIP_GROUP)
         x = CENTER_X - SHIP_WIDTH / 2
         y = SCREEN_HEIGHT - SHIP_HEIGHT
@@ -190,14 +259,29 @@ class SceneManager:
     # scripting methods
     # ----------------------------------------------------------------------------------------------
     def _add_initialize_script(self, script):
+        """Adds the script to initalize actions in the script.
+
+        Args:
+            script: An oject that holds the game actions
+        """
         script.clear_actions(INITIALIZE)
         script.add_action(INITIALIZE, self.INITIALIZE_DEVICES_ACTION)
 
     def _add_load_script(self, script):
+        """Adds the script to load all the assets needed.
+
+        Args:
+            script: An oject that holds the game actions
+        """
         script.clear_actions(LOAD)
         script.add_action(LOAD, self.LOAD_ASSETS_ACTION)
     
     def _add_output_script(self, script):
+        """Adds the script to draw the needed actors from the script to the screen.
+
+        Args:
+            script: An oject that holds the game actions
+        """
         script.clear_actions(OUTPUT)
         script.add_action(OUTPUT, self.START_DRAWING_ACTION)
         script.add_action(OUTPUT, self.DRAW_HUD_ACTION)
@@ -208,14 +292,29 @@ class SceneManager:
         script.add_action(OUTPUT, self.END_DRAWING_ACTION)
 
     def _add_release_script(self, script):
+        """Adds the script to release all the devices that were used.
+
+        Args:
+            script: An oject that holds the game actions
+        """
         script.clear_actions(RELEASE)
         script.add_action(RELEASE, self.RELEASE_DEVICES_ACTION)
     
     def _add_unload_script(self, script):
+        """Unloads the script
+
+        Args:
+            script: An oject that holds the game actions
+        """
         script.clear_actions(UNLOAD)
         script.add_action(UNLOAD, self.UNLOAD_ASSETS_ACTION)
         
     def _add_update_script(self, script):
+        """Adds updates to the script.
+
+        Args:
+            script: An oject that holds the game actions
+        """
         script.clear_actions(UPDATE)
         script.add_action(UPDATE, self.MOVE_LASER_ACTION)
         script.add_action(UPDATE, self.MOVE_SHIP_ACTION)

@@ -8,21 +8,39 @@ from game.casting.body import Body
 
 
 class ControlAsteroidsAction(Action):
+    """Handles the creation and movement of the Astroid actors"""
 
     def __init__(self, keyboard_service):
+        """Creates the CollideBordersAction
+        
+        Args:
+            keyboard_service: An object that handles keyboard actions.
+        """
         self._keyboard_service = keyboard_service
         self._count = 0
         
     def execute(self, cast, script, callback):
+        """Executes the movement of all the astroid actors.
         
-       self._count += 1
+        Args:
+            cast: an object that holds all actors needed for the scene 
+            script: an object that tells the actors what to do.
+            callback: Calls the actions to be executed.
+        """
+        
+        self._count += 1
 
-       if (self._count % 80) == 0: 
-           asteroid = self._add_asteroid(cast)
-           asteroid.fall()
+        if (self._count % 80) == 0: 
+            asteroid = self._add_asteroid(cast)
+            asteroid.fall()
         
      
     def _add_asteroid(self, cast):
+        """adds astroid actors.
+        
+        Args:
+            cast: an object that holds all actors needed for the scene
+        """
         
         asteroid_options = [GREEN_ASTEROID_IMAGE, GRAY_ASTEROID_IMAGE, BROWN_ASTEROID_IMAGE]
         image_file = random.choice(asteroid_options)

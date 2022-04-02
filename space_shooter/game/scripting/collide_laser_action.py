@@ -7,13 +7,28 @@ from game.casting.point import Point
 
 
 class CollideLaserAction(Action):
+    """Handles collisions with laser actors."""
 
     def __init__(self, physics_service, audio_service, video_service):
+        """Creates the CollideLaserAction
+        
+        Args:
+            physics_service: an object that handles the physics of Actors.
+            audio_service: an object that handles the audio of the game.
+            video_service: an object that handles the window of the game.
+        """
         self._physics_service = physics_service
         self._audio_service = audio_service
         self._video_service = video_service
         
     def execute(self, cast, script, callback):
+        """Executes the action when a laser collides with an Asteroid actor. 
+        
+        Args:
+            cast: an object that holds all actors needed for the scene 
+            script: an object that tells the actors what to do.
+            callback: Calls the actions to be executed.
+        """
         lasers = cast.get_actors(LASER_GROUP)
         asteroids = cast.get_actors(ASTEROID_GROUP)
         stats = cast.get_first_actor(STATS_GROUP)
@@ -28,6 +43,8 @@ class CollideLaserAction(Action):
 
 
                     if self._physics_service.has_collided(laser_body, asteroid_body):
+                        if laser in lasers:
+                            cast.remove_actor(LASER_GROUP, laser)
                         sound = Sound(LASER_HIT_SOUND)
                         self._audio_service.play_sound(sound)
                         hits = asteroid.get_hits()
@@ -46,13 +63,12 @@ class CollideLaserAction(Action):
                         self._video_service.draw_image(image, position) # use the video service to draw the new image
                         
                         if laser in lasers:
-                            
-                            if remove == TRUE:
+                            if remove == True:
                                 cast.remove_actor(LASER_GROUP, laser)
                                 cast.remove_actor(ASTEROID_GROUP, asteroid)
 
     
-    def _handle_asteroid(self, image, size, remove = FALSE):
+    def _handle_asteroid(self, image, size, remove = False):
         """changes asteroids images and sizes as well as decides
         when to remove asteroids.
         
@@ -85,5 +101,5 @@ class CollideLaserAction(Action):
         else:
             new_image = image
             new_size = size
-            remove = TRUE
+            remove = True
         return new_image, new_size, remove

@@ -4,12 +4,26 @@ from game.scripting.action import Action
 
 
 class CollideAsteroidAction(Action):
+    """Handles collisions with the Asteroid Actor"""
 
     def __init__(self, physics_service, audio_service):
+        """Creates the CollideAsteroidAction
+        
+        Args:
+            physics_service: an object that handles the physics of Actors.
+            audio_service: an object that handles the audio of the game.
+        """
         self._physics_service = physics_service
         self._audio_service = audio_service
         
     def execute(self, cast, script, callback):
+        """Executes the actions when an astroid has collided with an object.
+
+        Args:
+            cast: an object that holds all actors needed for the scene 
+            script: an object that tells the actors what to do.
+            callback: Calls the actions to be executed.
+        """
         ship = cast.get_first_actor(SHIP_GROUP)
         asteroids = cast.get_actors(ASTEROID_GROUP)
         stats = cast.get_first_actor(STATS_GROUP)

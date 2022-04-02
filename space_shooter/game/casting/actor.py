@@ -1,6 +1,3 @@
-from game.casting.text import Text
-
-
 class Actor:
     """A thing that participates in the game."""
     

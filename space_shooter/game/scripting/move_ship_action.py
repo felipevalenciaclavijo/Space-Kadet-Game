@@ -4,11 +4,20 @@ from game.scripting.action import Action
 
 
 class MoveShipAction(Action):
+    """Moves the Ship actors on the screen."""
 
     def __init__(self):
+        """Creates the class MoveShipAction"""
         pass
 
     def execute(self, cast, script, callback):
+        """Executes the action of moving the Ship actor.
+        
+        Args:
+            cast: an object that holds all actors needed for the scene 
+            script: an object that tells the actors what to do.
+            callback: Calls the actions to be executed.
+        """
         ship = cast.get_first_actor(SHIP_GROUP)
         body = ship.get_body()
         velocity = body.get_velocity()
