@@ -1,5 +1,5 @@
 # Space Kadet - Final Project
-Space Shooter is similar to the asteroid game.
+Space Kadet is similar to the asteroid game.
 
 ## Getting Started
 ---
