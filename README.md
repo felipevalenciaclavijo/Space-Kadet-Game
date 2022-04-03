@@ -1,4 +1,4 @@
-# Space Shooter - Final Project
+# Space Kadet - Final Project
 Space Shooter is similar to the asteroid game.
 
 ## Getting Started
